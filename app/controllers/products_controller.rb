@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
-  has_one_attached :poster
+  
   # GET /products
   def index
     @products = Product.all
@@ -15,8 +15,8 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(product_params)
-
+    @product = current_user.products.build(product_params)
+    byebug
     if @product.save
       render json: @product, status: :created, location: @product
     else
@@ -46,6 +46,6 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :quantity, :type, :user_id, :poster)
+      params.require(:product).permit(:name, :quantity, :details, :user_id, :category_id)
     end
 end
