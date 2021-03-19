@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set category, only: [:show, :create, :update, :destroy]
+  before_action :set_category, only: [:create, :update, :destroy]
 
   # GET /categories
   def index
@@ -10,12 +10,16 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
-    render json:  category
+    hash = CategorySerializer.new(@category, include: [:product]).serializable_hash
+    render json: { 
+      category: hash[:data][:attributes],
+      product: hash[:included].map(|category| category[:attributes])
+     }  end
   end
 
   # POST /categories
   def create
-     category = Category.new category_params)
+     @category = current_user.categories.build(category_params)
 
     if  category.save
       render json:  category, status: :created, location:  category
@@ -26,7 +30,7 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1
   def update
-    if  category.update category_params)
+    if  category.update(category_params)
       render json:  category
     else
       render json:  category.errors, status: :unprocessable_entity
