@@ -10,13 +10,19 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    render json: @product
+    #render json: @product
+    hash = ProductSerializer.new(@product, include: [:category]).serializable_hash
+    render json: { 
+      product: hash[:data][:attributes],
+      category: hash[:included].map(|category| category[:attributes])
+    }  end
+
   end
 
   # POST /products
   def create
     @product = current_user.products.build(product_params)
-    byebug
+    
     if @product.save
       render json: @product, status: :created, location: @product
     else
