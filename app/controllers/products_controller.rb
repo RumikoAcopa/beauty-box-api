@@ -10,13 +10,14 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    #render json: @product
-    hash = ProductSerializer.new(@product, include: [:category]).serializable_hash
-    render json: { 
-      product: hash[:data][:attributes],
-      category: hash[:included].map(|category| category[:attributes])
-    }  end
-
+    @product = Product.find(params[:id])
+    render json: @product
+    #hash = ProductSerializer.new(@product, include: [:category]).serializable_hash
+    #render json: { 
+    #  product: hash[:data][:attributes],
+    #  category: hash[:included].map{|category| category[:attributes]}
+    #}  
+    
   end
 
   # POST /products
@@ -49,7 +50,6 @@ class ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
     end
-
     # Only allow a trusted parameter "white list" through.
     def product_params
       params.require(:product).permit(:name, :quantity, :details, :user_id, :category_id)
