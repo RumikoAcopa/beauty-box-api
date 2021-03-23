@@ -4,19 +4,14 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
-
-    render json: @products
+    render json: ProductSerializer.new(@products).serializable_hash[:data].map{|product| product[:attributes]}
   end
 
   # GET /products/1
   def show
-    @product = Product.find(params[:id])
-    render json: @product
-    #hash = ProductSerializer.new(@product, include: [:category]).serializable_hash
-    #render json: { 
-    #  product: hash[:data][:attributes],
-    #  category: hash[:included].map{|category| category[:attributes]}
-    #}  
+    #@product = Product.find(params[:id])
+    hash = ProductSerializer.new(@product, include: [:category]).serializable_hash
+    render json: hash[:data][:attributes]
     
   end
 
