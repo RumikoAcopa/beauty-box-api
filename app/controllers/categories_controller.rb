@@ -12,8 +12,8 @@ class CategoriesController < ApplicationController
   def show
     hash = CategorySerializer.new(@category, include: [:product]).serializable_hash
     render json: hash[:data][:attributes]
-      # product: hash[:included].map(|category| category[:attributes])
-    #  }  end
+    product: hash[:included].map(|category| category[:attributes])
+    end
   end
 
   # POST /categories
