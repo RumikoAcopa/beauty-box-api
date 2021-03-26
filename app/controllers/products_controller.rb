@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   def show
     #@product = Product.find(params[:id])
-    hash = ProductSerializer.new(@product, include: [:category]).serializable_hash
+    hash = ProductSerializer.new(@product).serializable_hash
     render json: hash[:data][:attributes]
     
   end
@@ -47,6 +47,6 @@ class ProductsController < ApplicationController
     end
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :quantity, :details, :user_id, :category_id)
+      params.require(:product).permit(:name, :quantity, :details, :user_id)
     end
 end
