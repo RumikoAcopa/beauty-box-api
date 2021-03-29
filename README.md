@@ -1,6 +1,27 @@
 # Beauty-Box-App
 
-This app is where users can track their product inventory. They will be able to enter a product with the quanitity and category of their choosing.
+Beauty-Box is a web application where users can track their product inventory. They will be able to enter a product with the quanitity and category of their choosing.
+View the backend repo [here](https://github.com/RumikoAcopa/beauty-box-api).
+
+## Usage
+
+Signup or login to create, view and join tracking your inventory.
+
+## Built Using
+
+- Ruby on Rails
+- React
+- Redux
+- PostgreSQL
+- HTML/CSS
+
+## Contributing
+
+Bug reports and pull requests are welcome on Github at https://github.com/RumikoAcopa/beauty-box-frontend
+
+## License
+
+Available as open source under the terms of the MIT license.
 
 ## Quick Instructions
 
