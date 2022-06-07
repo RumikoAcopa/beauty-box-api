@@ -54,4 +54,9 @@ Rails.application.configure do
   Rails.application.routes.default_url_options = {
   host: 'http://localhost:3001'
   }
+
+  #Datadog Agent Tracing
+  DD_APM_ENABLED=true
+
+  #Datadog http config trace data ingestion
 end

@@ -64,6 +64,12 @@ GEM
     byebug (11.1.3)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    ddtrace (1.1.0)
+      debase-ruby_core_source (<= 0.10.16)
+      libddprof (~> 0.6.0.1.0)
+      libddwaf (~> 1.3.0.2.0)
+      msgpack
+    debase-ruby_core_source (0.10.16)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -95,6 +101,9 @@ GEM
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.2.3)
+    libddprof (0.6.0.1.0)
+    libddwaf (1.3.0.2.0-x86_64-darwin)
+      ffi (~> 1.0)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -211,6 +220,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  ddtrace
   devise
   devise-jwt
   jsonapi-serializer
